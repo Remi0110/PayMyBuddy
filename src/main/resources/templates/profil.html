@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="template1">
+<head>
+<meta charset="UTF-8" />
+<title>Pay My Buddy</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="container">
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">Your informations</div>
+				<div class="panel-body">  
+							<div>
+								<label> First name: </label>
+								<label th:text="${code.user.firstName}"></label>
+							 </div>
+							<div>
+								<label> Last name: </label>
+								<label th:text="${code.user.lastName}"></label>
+							 </div>
+							 <div>
+								<label> Code : </label>
+								<label th:text="${code.codeAccount}"></label>
+							 </div>
+							 <div>
+								<label> Solde: </label>
+								<label th:text="${code.solde}"></label>
+							 </div>
+							 <div>
+								<label> Authorized Overdraft: </label>
+								<label th:text="${code.overdraft}"></label>
+							 </div>
+			   </div>
+			</div>
+			
+
+		</div>
+	</div>
+
+</body>
+</html>

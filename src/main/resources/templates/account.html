@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="template1">
+<head>
+<meta charset="UTF-8" />
+<title>Pay My Buddy</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="container">
+			<!-- 			<div class="panel panel-primary"> -->
+			<!-- 				<div class="panel-heading">Account code</div> -->
+			<!-- 				<div class="panel-body"> -->
+			<!-- 					<div th:if="${message != null}"> -->
+			<!-- 						<p th:text="${message}" class="alert alert-success" role="alert"></p> -->
+			<!-- 					</div> -->
+			<!-- 					<form th:action="@{/consultAccount}" method="get"> -->
+			<!-- 						<label> Code Account: </label> <input type="text" -->
+			<!-- 							name="codeAccount" placeholder="Please enter your code" -->
+			<!-- 							th:value=${codeAccount}> -->
+			<!-- 						<button type="submit" class="btn btn-primary" >Ok</button> -->
+			<!-- 					</form> -->
+			<!-- 					<div th:if="${exception}" th:text="${exception.message}" -->
+			<!-- 						class="text-danger"></div> -->
+			<!-- 				</div><span th:text="${#authentication.getPrincipal().getUsername()}"></span> -->
+			<!-- 			</div> -->
+			<div th:if="${account}">
+				<div>
+					<label style="font-size: 160%;">Send Money</label>
+					<button type="button" class="btn btn-primary btn-md pull-right"
+						style="margin: auto;" data-toggle="modal"
+						data-target="#confirmModal">Add Connection</button>
+					<!-- Modal -->
+					<div class="modal fade" id="confirmModal" tabindex="-1"
+						role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background-color: #2E8B57">
+									<h4 class="modal-title" role="alert">
+										Add Connection
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">&times;</button>
+									</h4>
+
+								</div>
+								<div class="modal-body" th:value=${user}>
+																				
+								
+									<form th:action="@{/addConnections}" method="post">
+										<div class="form-group">
+											<input type="hidden" th:value=${user} name="codeUser" /> <label
+												for="recipient-name" class="col-form-label">Recipient:</label>
+											<input type="text" class="form-control" id="recipient-name"
+												name="recipient" placeholder="Please enter an email address">
+										</div>
+										 <input type="hidden" name="codeAccount"
+								th:value="${codeAccount}" />
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Add</button>
+										</div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="jumbotron">
+					<form th:action="@{/saveTransaction}" method="post" class="form-inline text-center">
+
+						<!-- 						<div class="dropdown"> -->
+						<!-- 							<button class="btn btn-default dropdown-toggle" type="button" -->
+						<!-- 								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" -->
+						<!-- 								aria-expanded="true"> -->
+						<!-- 								Dropdown <span class="caret"></span> -->
+						<!-- 							</button> -->
+						<!-- 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> -->
+						<!-- 								<li><a href="#">Action</a></li> -->
+						<!-- 								<li><a href="#">Another action</a></li> -->
+						<!-- 								<li><a href="#">Something else here</a></li> -->
+						<!-- 								<li role="separator" class="divider"></li> -->
+						<!-- 								<li><a href="#">Separated link</a></li> -->
+						<!-- 							</ul> -->
+						<!-- 						</div> -->
+			
+						
+							<input class="form-control mb-2 mr-sm-3" type="hidden" name="codeAccount"
+								th:value="${codeAccount}" />
+						
+						<div class="form-group" style="margin-right: 12px ">
+							<select style="width: 150px" class="form-control" id="friendsOrder" name="friendCode">
+								<option value="">select friend</option>
+								<option th:each="user : ${listFriends}" th:value="${user.code}"
+									th:text="${user.firstName}"></option>
+							</select>
+						</div>
+						<!-- 						<div> -->
+						<!-- 							<label> Vers : </label> <input type="text" name="codeAccount2" /> -->
+						<!-- 						</div> -->
+						<div class="form-group">
+							<label> Description : </label> <input type="text" class="form-control mb-2 mr-sm-2"
+								name="description" />
+						</div>
+
+						<div class="form-group">
+							<label> Amount : </label> <input type="text"  name="amount" class="form-control mb-2 mr-sm-2" required/>
+						</div>
+
+						<div class="form-group">
+						<button style="background-color: #2E8B57" type="submit"
+							class="btn btn-primary">Pay</button>
+							</div>
+						
+					</form>
+				</div>
+						<div th:if="${exception}">  <p th:text="${exception}" class="alert alert-danger" role="alert"></p></div>
+				
+				<div th:if="${message != null}">
+				<p th:text="${message}" class="alert alert-success" role="alert"></p>
+				</div>
+				
+				<div class="panel panel-primary">
+					<div class="panel-heading">My Transactions</div>
+					<div class="panel-body">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Connections</th>
+									<th>Description</th>
+									<th>Amount</th>
+								</tr>
+							<thead />
+							<tbody>
+								<tr th:each=t:${listTransaction}>
+
+									<td
+										th:text="${t.fromAccount.getCodeAccount() == codeAccount} ? ${t.toAccount.getUser().getFirstName()} : ${t.fromAccount.getUser().getFirstName()}"></td>
+									<td th:text="${t.description}"></td>
+									<td th:text="${t.amount}"></td>
+
+								</tr>
+							</tbody>
+						</table>
+						<div class="container">
+							<ul class="nav nav-pills">
+								<li th:each="p,status:${pages}"><a
+									th:href="@{/consultAccount(codeAccount=${codeAccount},page=${status.index})}"
+									th:text="${status.index}"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

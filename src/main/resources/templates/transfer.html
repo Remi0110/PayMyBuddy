@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="template1">
+<head>
+<meta charset="UTF-8" />
+<title>Pay My Buddy</title>
+</head>
+<body>
+	<div layout:fragment="content">
+
+		<div class="container">
+			<label style="font-size: 160%;">Transfer Money</label>
+			<div class="jumbotron">
+				<form th:action="@{/transferFromPMBToBank}" method="post"
+					class="form-inline " >
+
+
+					<div class="form-group">
+						<label> From my PMB Account : </label> <input type="text"
+							th:value=${pmbAccount} class="form-control mb-2 mr-sm-2"
+							name="pmbAccount" readonly />
+					</div>
+
+					<div class="form-group">
+						<label> To my bank Account : </label> <input type="text"
+							th:value=${bankAccount} name="bankAccount"
+							class="form-control mb-2 mr-sm-2" readonly />
+					</div>
+					<div class="form-group">
+						<label> Amount : </label> <input
+							type="text" name="amount" placeholder="Please enter an amount" 
+							class="form-control mb-2 mr-sm-2" required />
+					</div>
+
+					<div class="form-group">
+						<button style="background-color: #2E8B57" type="submit"
+							class="btn btn-primary">Transfer</button>
+					</div>
+
+				</form>
+				<div class="clearfix"></div>
+				<br>
+				<br>
+				<form th:action="@{/transferFromBankToPMB}" method="post"
+					class="form-inline">
+
+
+					<div class="form-group">
+						<label> From my Bank Account : </label> <input type="text"
+							th:value=${bankAccount} class="form-control mb-2 mr-sm-2"
+							name="bankAccount" readonly />
+					</div>
+
+					<div class="form-group">
+						<label> To my PMB Account : </label> <input type="text"
+							th:value=${pmbAccount} name="pmbAccount"
+							class="form-control mb-2 mr-sm-2" readonly />
+					</div>
+					<div class="form-group">
+						<label> Amount : </label> <input type="text" name="amount"
+							placeholder="Please enter an amount" class="form-control mb-2 mr-sm-2" 
+							required/>
+					</div>
+
+					<div class="form-group">
+						<button style="background-color: #2E8B57" type="submit"
+							class="btn btn-primary">Transfer</button>
+					</div>
+
+				</form>
+			</div>
+			<div th:if="${exception}">
+				<p th:text="${exception}" class="alert alert-danger" role="alert"></p>
+			</div>
+			<div th:if="${message != null}">
+				<p th:text="${message}" class="alert alert-success" role="alert"></p>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+</html>
