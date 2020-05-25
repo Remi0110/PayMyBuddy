@@ -30,16 +30,6 @@
 						<span th:errors="${user.password}" class="text-danger"></span>
 						<br/> 
 						<button type="submit" class="btn btn-lg btn-primary btn-block" th:text="Register"></button>
-				
-<!-- 				<span th:utext="${successMessage}"></span> -->
-<!-- 				<div class="alert alert-danger alert-dismissible col-sm-12" -->
-<!-- 					th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}"> -->
-<!-- 					<button type="button" class="close" data-dismiss="alert" -->
-<!-- 						aria-hidden="true">×</button> -->
-<!-- 					<ul th:each="data : ${bindingResult.getAllErrors()}"> -->
-<!-- 						<li th:text="${data.getDefaultMessage()}"></li> -->
-<!-- 					</ul> -->
-<!-- 				</div> -->
 			</form>
 
     	<div th:if="${exception}" style="width:30%;margin:auto;padding: 1% 0;">
@@ -48,6 +38,5 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!--     <script src="${contextPath}/resources/js/bootstrap.min.js"></script> -->
   </body>
 </html>

@@ -41,17 +41,6 @@ public class BankServiceImpl implements BankService {
 		return account;
 	}
 
-//	@Override
-//	public void versement(String codeAccount, String description, double amount) {
-//		Account account = getAccount(codeAccount);
-//		Transaction transaction = new Transaction(new Date(), description, amount, account);
-//		transactionRepository.save(transaction); // ici, la methode save() permet l'enregistrement
-//	    //mettre a jour le solde du compte
-//		account.setSolde(account.getSolde() + amount);
-//		accountRepository.save(account);
-//		
-//	}
-
 	@Override
 	public void retrait(String codeAccount, double amount) {
 		Account account = getAccount(codeAccount);
@@ -68,7 +57,7 @@ public class BankServiceImpl implements BankService {
 
 		// mettre a jour le solde du compte
 		account.setSolde(account.getSolde() - amount);
-		accountRepository.save(account); // ici, la methode save permet de mettre a jours le compte (update)
+		accountRepository.save(account);
 	}
 
 	@Override

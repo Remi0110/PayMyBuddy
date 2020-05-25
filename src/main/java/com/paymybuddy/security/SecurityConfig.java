@@ -21,14 +21,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
-	
-//	@Autowired
-//	BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-//	@Autowired
-//	private DataSource dataSource;
 	
 	@Autowired
 	@Qualifier("customUserDetailsService")
@@ -39,12 +32,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	       http
 	       .authorizeRequests()
 	       .antMatchers("/login", "/registration").permitAll().antMatchers("/register").permitAll()
-
-	   
 	       .anyRequest()
 	       .authenticated()
-	       .and().formLogin()
-	       
+	       .and().formLogin()   
 	       .loginPage("/login")
 	       .usernameParameter("email")
 	       .defaultSuccessUrl("/consultAccount").permitAll()
@@ -52,12 +42,6 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	       .logout().deleteCookies("JSESSIONID")
 	       .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	       ;
-
-//	        http.formLogin().loginPage("/login").usernameParameter("email")
-//	            .permitAll()
-//	        .and()
-//	            .logout()
-//	            .permitAll();
 	   }
 
 @Override

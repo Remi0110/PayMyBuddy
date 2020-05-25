@@ -10,22 +10,7 @@
 	<div layout:fragment="content">
 
 		<div class="container">
-			<!-- 			<div class="panel panel-primary"> -->
-			<!-- 				<div class="panel-heading">Account code</div> -->
-			<!-- 				<div class="panel-body"> -->
-			<!-- 					<div th:if="${message != null}"> -->
-			<!-- 						<p th:text="${message}" class="alert alert-success" role="alert"></p> -->
-			<!-- 					</div> -->
-			<!-- 					<form th:action="@{/consultAccount}" method="get"> -->
-			<!-- 						<label> Code Account: </label> <input type="text" -->
-			<!-- 							name="codeAccount" placeholder="Please enter your code" -->
-			<!-- 							th:value=${codeAccount}> -->
-			<!-- 						<button type="submit" class="btn btn-primary" >Ok</button> -->
-			<!-- 					</form> -->
-			<!-- 					<div th:if="${exception}" th:text="${exception.message}" -->
-			<!-- 						class="text-danger"></div> -->
-			<!-- 				</div><span th:text="${#authentication.getPrincipal().getUsername()}"></span> -->
-			<!-- 			</div> -->
+		
 			<div th:if="${account}">
 				<div>
 					<label style="font-size: 160%;">Send Money</label>
@@ -72,21 +57,6 @@
 				</div>
 				<div class="jumbotron">
 					<form th:action="@{/saveTransaction}" method="post" class="form-inline text-center">
-
-						<!-- 						<div class="dropdown"> -->
-						<!-- 							<button class="btn btn-default dropdown-toggle" type="button" -->
-						<!-- 								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" -->
-						<!-- 								aria-expanded="true"> -->
-						<!-- 								Dropdown <span class="caret"></span> -->
-						<!-- 							</button> -->
-						<!-- 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1"> -->
-						<!-- 								<li><a href="#">Action</a></li> -->
-						<!-- 								<li><a href="#">Another action</a></li> -->
-						<!-- 								<li><a href="#">Something else here</a></li> -->
-						<!-- 								<li role="separator" class="divider"></li> -->
-						<!-- 								<li><a href="#">Separated link</a></li> -->
-						<!-- 							</ul> -->
-						<!-- 						</div> -->
 			
 						
 							<input class="form-control mb-2 mr-sm-3" type="hidden" name="codeAccount"
@@ -99,9 +69,7 @@
 									th:text="${user.firstName}"></option>
 							</select>
 						</div>
-						<!-- 						<div> -->
-						<!-- 							<label> Vers : </label> <input type="text" name="codeAccount2" /> -->
-						<!-- 						</div> -->
+				
 						<div class="form-group">
 							<label> Description : </label> <input type="text" class="form-control mb-2 mr-sm-2"
 								name="description" />

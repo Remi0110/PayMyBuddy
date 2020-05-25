@@ -79,6 +79,7 @@ public class BankController {
 		return "redirect:/welcome";	
 		}
 	
+	
 	@RequestMapping("/consultAccount")  
 	public String consultAccount(Model model, String codeAccount,@RequestParam(name="page",defaultValue="0")int page,@RequestParam(name="size",defaultValue="5")int size) {   
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -89,7 +90,6 @@ public class BankController {
 
 		try {	
 			Account pmbAccount = bankService.getPMBAccountFromListOfAccounts(listAccounts);
-//			Account account=bankService.getAccount(pmbAccount.getCodeAccount()); 
 			Page<Transaction>  pageTransaction = bankService.listTransactionAccount(pmbAccount.getCodeAccount() ,page, size);
 			Collection<User> listFriends = user.getFriends();
 			model.addAttribute("listTransaction",pageTransaction.getContent());
@@ -122,7 +122,6 @@ public class BankController {
 
 		}
 		 
-		
 		return "redirect:/consultAccount?codeAccount="+codeAccount;  
 	}
 	
@@ -167,7 +166,6 @@ public class BankController {
 		try {	
 			Account pmbAccount = bankService.getPMBAccountFromListOfAccounts(listAccounts);
 			Account bankAccount = bankService.getBankAccountFromListOfAccounts(listAccounts);
-//			Account account=bankService.getAccount(pmbAccount.getCodeAccount()); 
 			model.addAttribute("pmbAccount",pmbAccount.getCodeAccount());
 			model.addAttribute("bankAccount",bankAccount.getCodeAccount());
 

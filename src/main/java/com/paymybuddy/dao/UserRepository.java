@@ -9,7 +9,5 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	public User findByEmail(String username);
 	
-//	@Query("select u from User u, Account a where a.codeAccount = :x in elements(u.accounts)") 
-//	public User findUserByCodeAccount(@Param("x")String codeAccount);
 	public User findByCode(Long codeUser);
 }

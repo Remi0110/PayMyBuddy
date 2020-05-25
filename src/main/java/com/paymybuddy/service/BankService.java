@@ -11,7 +11,6 @@ import com.paymybuddy.entities.User;
 public interface BankService {
 
 	 public Account getAccount(String codeAccount);
-//	 public void versement(String codeAccount, String description, double amount);
 	 public void retrait(String codeAccount, double amount);
 	 public void virement(String codeAccountRemove,String codeAccountPayment,String description,String amount);
 	 public Page<Transaction> listTransactionAccount(String codeAccount,int page,int sizePage);
