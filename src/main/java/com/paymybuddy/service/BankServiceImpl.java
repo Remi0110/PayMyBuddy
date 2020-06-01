@@ -177,7 +177,7 @@ public class BankServiceImpl implements BankService {
 	
 	@Override
 	public double taxPourcentage(double amount) {
-		double tax = (amount * 5) / 100;
+		double tax = (amount * 0.5) / 100;
 		return tax;
 	}
 	

@@ -58,7 +58,7 @@ public class BankServiceImplTest {
 	    Account account = new PMBAccount("a1", new Date(), 0, user, 400);
 	    Account account2 = new PMBAccount("a2", new Date(), 0, user2, 400);
 	    double amount = 100;
-	    double amount2 = -105.0;
+	    double amount2 = -100.5;
 		Transaction transaction = new Transaction(new Date(), "Virement", 100, account, account2);
 
 	    Mockito.when(accountRepository.findById(account.getCodeAccount()))
